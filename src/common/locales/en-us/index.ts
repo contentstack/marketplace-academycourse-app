@@ -33,7 +33,7 @@ const localeTexts = {
     button: {
       learnMore: "Learn more",
     },
-    audienceModal: {
+    productModal: {
       header: "Add Product",
       cancelButton: "Cancel",
       confirmButton: "Add",

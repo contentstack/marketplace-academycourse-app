@@ -8,7 +8,7 @@ import {
   Tag,
 } from "@contentstack/venus-components";
 
-import AudienceModal from "./AudienceModal";
+import ProductModal from "./ProductModal";
 import "./styles.scss";
 
 const CustomFieldExtension = () => {
@@ -65,8 +65,8 @@ const CustomFieldExtension = () => {
     });
   };
 
-  const audienceModal = (props: any) => (
-    <AudienceModal
+  const productModal = (props: any) => (
+    <ProductModal
       updateSelectedItems={updateSelectedItems}
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
@@ -75,7 +75,7 @@ const CustomFieldExtension = () => {
 
   const handleClick = () => {
     cbModal({
-      component: audienceModal,
+      component: productModal,
       modalProps: {
         onClose: () => {},
         onOpen: () => {},

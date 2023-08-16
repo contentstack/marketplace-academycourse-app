@@ -11,13 +11,13 @@ import {
 import React, { useState } from "react";
 import localeTexts from "../../common/locales/en-us";
 
-const AudienceModal = ({ updateSelectedItems, ...props }: any) => {
+const ProductModal = ({ updateSelectedItems, ...props }: any) => {
   const [name, setName] = useState("");
 
   return (
     <>
       <ModalHeader
-        title={localeTexts.CustomField.audienceModal.header}
+        title={localeTexts.CustomField.productModal.header}
         closeModal={props?.closeModal}
       />
       <ModalBody className="audienceModalBody">
@@ -29,7 +29,7 @@ const AudienceModal = ({ updateSelectedItems, ...props }: any) => {
           <TextInput
             type="text"
             name="name"
-            placeholder={localeTexts.CustomField.audienceModal.placeholder}
+            placeholder={localeTexts.CustomField.productModal.placeholder}
             onChange={(e: any) => setName(e.target.value)}
           />
         </Field>
@@ -37,7 +37,7 @@ const AudienceModal = ({ updateSelectedItems, ...props }: any) => {
       <ModalFooter>
         <ButtonGroup>
           <Button buttonType="light" onClick={props?.closeModal}>
-            {localeTexts.CustomField.audienceModal.cancelButton}
+            {localeTexts.CustomField.productModal.cancelButton}
           </Button>
           <Button
             buttonType="secondary"
@@ -47,7 +47,7 @@ const AudienceModal = ({ updateSelectedItems, ...props }: any) => {
               props?.closeModal();
             }}
           >
-            {localeTexts.CustomField.audienceModal.confirmButton}
+            {localeTexts.CustomField.productModal.confirmButton}
           </Button>
         </ButtonGroup>
       </ModalFooter>
@@ -55,4 +55,4 @@ const AudienceModal = ({ updateSelectedItems, ...props }: any) => {
   );
 };
 
-export default React.memo(AudienceModal);
+export default React.memo(ProductModal);
