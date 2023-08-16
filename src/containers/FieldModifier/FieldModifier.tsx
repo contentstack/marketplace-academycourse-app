@@ -37,11 +37,8 @@ const FieldModifierExtension = () => {
       });
   }, []);
 
-  const onClick = () => {
+  const updateEntry = (updatedData:any) => {
     const { location } = state;
-    if (!state?.appSdkInitialized) return;
-    const updatedData = entry.toUpperCase();
-
     location.FieldModifierLocation?.field?.setData(updatedData);
   };
 
@@ -68,7 +65,7 @@ const FieldModifierExtension = () => {
     return (
       <>
         <h3>{state?.config?.title}</h3>
-        <button onClick={onClick}>Capitalize</button>
+        <button onClick={()=>updateEntry(entry.toUpperCase())}>Capitalize</button>
       </>
     );
   };
