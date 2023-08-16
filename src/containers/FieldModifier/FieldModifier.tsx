@@ -41,10 +41,6 @@ const FieldModifierExtension = () => {
     const { location } = state;
     if (!state?.appSdkInitialized) return;
     const updatedData = entry.toUpperCase();
-    console.info(
-      "🚀 ~ file: FieldModifier.tsx:43 ~ onClick ~ updatedData:",
-      updatedData
-    );
 
     location.FieldModifierLocation?.field?.setData(updatedData);
   };
