@@ -16,5 +16,5 @@
     "outDir": "dist/lib",
     "typeRoots": ["node_modules/@types"]
   },
-  "include": ["src", "src/type/svg.d.ts"]
+  "include": ["src"]
 }
