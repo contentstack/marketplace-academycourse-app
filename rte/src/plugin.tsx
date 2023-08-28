@@ -5,10 +5,10 @@ import { Icon } from "@contentstack/venus-components";
 
 import { onClickHandler } from "./academy";
 
-export default ContentstackSDK.init().then(async (sdk) => {
+export default ContentstackSDK.init().then(async (sdk:any) => {
     const extensionObj = await sdk["location"];
     const RTE = await extensionObj["RTEPlugin"]!;
-    console.info("Hello sdk", sdk);
+
     if (!RTE) return;
 
     const Academy = RTE("academy", () => {

@@ -1,4 +1,3 @@
-
 import { cloneDeep } from "lodash";
 
 export const onClickHandler = (rte: any) => {
