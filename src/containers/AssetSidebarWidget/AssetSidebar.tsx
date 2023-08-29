@@ -1,8 +1,32 @@
+import { useEffect, useState } from "react";
 import Icon from "../../assets/assetsidebar.svg";
 import localeTexts from "../../common/locales/en-us/index";
-import parse from "html-react-parser";
+import ContentstackAppSDK from "@contentstack/app-sdk";
+import './styles.scss'
 
 const AssetSidebarExtension = () => {
+    const [state, setState] = useState<any>({
+        config: {},
+        location: {},
+        appSdkInitialized: false,
+    });
+    const [assetData, setAssetData] = useState<any>({});
+
+    useEffect(() => {
+        ContentstackAppSDK.init()
+        .then(async(appSdk) => {
+            const config = await appSdk?.getConfig();
+            const assetDataFromLocation = await appSdk?.location?.AssetSidebarWidget?.getData();
+            setAssetData(assetDataFromLocation);
+            setState({
+                config,
+                location: appSdk?.location,
+                appSdkInitialized: true,
+            });
+        })
+    }, [])
+
+
   return (
     <div className="asset-sidebar">
       <div className="asset-sidebar-container">
@@ -11,7 +35,9 @@ const AssetSidebarExtension = () => {
         </div>
         <div className="app-component-content">
           <h4>{localeTexts.AssetSidebarWidget.title}</h4>
-          <p>{parse(localeTexts.AssetSidebarWidget.body)}</p>
+          <div>Filename : {assetData?.filename}</div>
+          <div>Dimensions : {assetData?.dimension?.height} x {assetData?.dimension?.width}</div>
+          <div>URL: {assetData?.url}</div>
           <a
             target="_blank"
             rel="noreferrer"
