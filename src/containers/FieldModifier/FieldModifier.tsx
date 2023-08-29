@@ -64,8 +64,6 @@ const FieldModifierExtension = () => {
 
     return (
       <>
-        <h3>{state?.config?.title}</h3>
-        <button onClick={()=>updateEntry(entry.toUpperCase())}>Capitalize</button>
       </>
     );
   };

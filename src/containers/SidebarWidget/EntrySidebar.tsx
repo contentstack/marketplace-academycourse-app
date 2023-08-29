@@ -82,11 +82,8 @@ const EntrySidebarExtension = () => {
 
   const renderProduct = () => {
     return (
-      <ol>
-        {products?.map((item: string, index: number) => (
-          <li key={index} className="list">{`${index + 1}. ${item}`}</li>
-        ))}
-      </ol>
+      <>
+      </>
     );
   };
 
