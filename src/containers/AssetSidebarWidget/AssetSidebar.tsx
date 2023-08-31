@@ -10,14 +10,11 @@ const AssetSidebarExtension = () => {
         location: {},
         appSdkInitialized: false,
     });
-    const [assetData, setAssetData] = useState<any>({});
 
     useEffect(() => {
         ContentstackAppSDK.init()
         .then(async(appSdk) => {
             const config = await appSdk?.getConfig();
-            const assetDataFromLocation = await appSdk?.location?.AssetSidebarWidget?.getData();
-            setAssetData(assetDataFromLocation);
             setState({
                 config,
                 location: appSdk?.location,
@@ -34,10 +31,7 @@ const AssetSidebarExtension = () => {
           <img src={Icon} alt="icon" />
         </div>
         <div className="app-component-content">
-          <h4>{localeTexts.AssetSidebarWidget.title}</h4>
-          <div>Filename : {assetData?.filename}</div>
-          <div>Dimensions : {assetData?.dimension?.height} x {assetData?.dimension?.width}</div>
-          <div>URL: {assetData?.url}</div>
+          {/* your code goes here */}
           <a
             target="_blank"
             rel="noreferrer"
