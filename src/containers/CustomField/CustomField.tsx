@@ -2,13 +2,10 @@ import { useState, useEffect } from "react";
 
 import ContentstackAppSdk from "@contentstack/app-sdk";
 import {
-  cbModal,
   SkeletonTile,
   Button,
-  Tag,
 } from "@contentstack/venus-components";
 
-import ProductModal from "./ProductModal";
 import "./styles.scss";
 
 const CustomFieldExtension = () => {
@@ -65,25 +62,6 @@ const CustomFieldExtension = () => {
     });
   };
 
-  const productModal = (props: any) => (
-    <ProductModal
-      updateSelectedItems={updateSelectedItems}
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      {...props}
-    />
-  );
-
-  const handleClick = () => {
-    cbModal({
-      component: productModal,
-      modalProps: {
-        onClose: () => {},
-        onOpen: () => {},
-        size: "xsmall",
-      },
-    });
-  };
-
   const renderCustomField = () => {
     if (loading) {
       return (
@@ -103,11 +81,7 @@ const CustomFieldExtension = () => {
       return (
         <div className="extension-content">
           {
-            <Tag
-              version="v1"
-              tags={selectedItems}
-              onChange={(tags: any) => setSelectedItems(tags)}
-            />
+            //add tag code here
           }
         </div>
       );
