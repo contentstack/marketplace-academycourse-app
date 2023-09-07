@@ -1,12 +1,9 @@
-import { useState, useEffect } from "react";
+import "./styles.scss";
+
+import { Button, SkeletonTile } from "@contentstack/venus-components";
+import { useEffect, useState } from "react";
 
 import ContentstackAppSdk from "@contentstack/app-sdk";
-import {
-  SkeletonTile,
-  Button,
-} from "@contentstack/venus-components";
-
-import "./styles.scss";
 
 const CustomFieldExtension = () => {
   const appName = "academy";
@@ -101,7 +98,7 @@ const CustomFieldExtension = () => {
         <div className="field-extension-wrapper" data-test-id="field-wrapper">
           {renderCustomField()}
           <Button
-            onClick={handleClick}
+            onClick={() => {}}
             className="add-audience-btn"
             buttonType="control"
             disabled={loading}
