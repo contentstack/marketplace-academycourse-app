@@ -1,8 +1,9 @@
+import "./styles.scss";
+
 import { useEffect, useState } from "react";
+
 import ContentstackAppSdk from "@contentstack/app-sdk";
 import { SkeletonTile } from "@contentstack/venus-components";
-
-import "./styles.scss";
 
 const FieldModifierExtension = () => {
   const [state, setState] = useState<any>({

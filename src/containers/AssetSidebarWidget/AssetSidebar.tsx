@@ -1,8 +1,10 @@
+import "./styles.scss";
+
 import { useEffect, useState } from "react";
+
+import ContentstackAppSDK from "@contentstack/app-sdk";
 import Icon from "../../assets/assetsidebar.svg";
 import localeTexts from "../../common/locales/en-us/index";
-import ContentstackAppSDK from "@contentstack/app-sdk";
-import "./styles.scss";
 
 const AssetSidebarExtension = () => {
   const [state, setState] = useState<any>({

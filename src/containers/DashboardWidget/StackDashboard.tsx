@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
-import ContentstackAppSDK from "@contentstack/app-sdk";
-import { InfiniteScrollTable } from "@contentstack/venus-components";
 import "./styles.scss";
+
+import { useEffect, useState } from "react";
+
+import ContentstackAppSDK from "@contentstack/app-sdk";
 
 const StackDashboardExtension = () => {
   const [state, setState] = useState<any>({

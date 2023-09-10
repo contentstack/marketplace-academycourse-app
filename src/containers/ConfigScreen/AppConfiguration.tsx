@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
-import ContentstackAppSdk from "@contentstack/app-sdk";
+import { useEffect, useState } from "react";
 
+import ContentstackAppSdk from "@contentstack/app-sdk";
 import localeTexts from "../../common/locales/en-us/index";
 
 const AppConfigurationExtension = () => {

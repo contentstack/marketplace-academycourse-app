@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
-import ContentstackAppSDK from "@contentstack/app-sdk";
 import "./styles.scss";
 
-const FullPageExtension = () => {
-  let itemStatusMap: any = {};
+import { useEffect, useState } from "react";
 
+import ContentstackAppSDK from "@contentstack/app-sdk";
+
+const FullPageExtension = () => {
   const [state, setState] = useState<any>({
     config: {},
     location: {},

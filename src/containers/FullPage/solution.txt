@@ -1,0 +1,122 @@
+import "./styles.scss";
+
+import { useEffect, useState } from "react";
+
+import ContentstackAppSDK from "@contentstack/app-sdk";
+import { InfiniteScrollTable } from "@contentstack/venus-components";
+import { Select } from "@contentstack/venus-components";
+
+const FullPageExtension = () => {
+  const [state, setState] = useState<any>({
+    config: {},
+    location: {},
+    appSdkInitialized: false,
+  });
+
+  const [contentTypes, setContentTypes] = useState<any[]>();
+  const [contentTypeOptions, setContentTypeOptions] = useState<any[]>([]);
+  const [selectedContentType, setSelectedContentType] = useState<any>("");
+  const [entriesData, setEntriesData] = useState<any[]>([]);
+
+  const getEntriesOfAContentType = async (contentTypeUid: any) => {
+    const { entries } =
+      (await state?.location?.FullPage?.stack
+        ?.ContentType(contentTypeUid)
+        .Entry.Query()
+        .find()) || {};
+    setEntriesData(entries);
+  };
+
+  useEffect(() => {
+    ContentstackAppSDK.init().then(async (appSdk) => {
+      const config = await appSdk?.getConfig();
+      setState({
+        config,
+        location: appSdk?.location,
+        appSdkInitialized: true,
+      });
+      const { content_types } =
+        (await appSdk?.location?.FullPage?.stack?.getContentTypes()) || {};
+      setContentTypes(content_types);
+    });
+  }, []);
+
+  useEffect(() => {
+    if (!state.appSdkInitialized) return;
+    let dropdownOptions: any = [];
+    contentTypes?.forEach((contentType: any) => {
+      dropdownOptions.push({
+        label: contentType?.title,
+        value: contentType?.uid,
+      });
+    });
+    setContentTypeOptions(dropdownOptions);
+  }, [contentTypes]);
+
+  useEffect(() => {
+    if (!Object.keys(selectedContentType).length) return;
+    getEntriesOfAContentType(selectedContentType?.value);
+  }, [selectedContentType]);
+
+  useEffect(() => {
+    entriesData?.forEach(
+      (_: any, index: any) => (itemStatusMap[index] = "loaded")
+    );
+  }, [entriesData]);
+
+  const handleDropdownChange = (e: any) => {
+    setSelectedContentType(e);
+  };
+
+  const columns = [
+    {
+      Header: "Title",
+      accessor: "title",
+      columnWidthMultiplier: 1.9,
+    },
+    {
+      Header: "UID",
+      accessor: "uid",
+      id: "uid",
+      columnWidthMultiplier: 1.5,
+    },
+    {
+      Header: "Locale",
+      accessor: "locale",
+      columnWidthMultiplier: 1,
+    },
+    {
+      Header: "Updated At",
+      accessor: (obj: any) => {
+        return new Date(obj?.updated_at).toUTCString();
+      },
+      columnWidthMultiplier: 2,
+    },
+  ];
+
+  let itemStatusMap: any = {};
+
+  return (
+    <div className="full-page">
+      <div className="full-page-container">
+        <Select
+          options={contentTypeOptions}
+          value={selectedContentType}
+          onChange={handleDropdownChange}
+          placeholder="Select Content Type"
+          selectLabel="Content Type"
+        />
+        <InfiniteScrollTable
+          data={entriesData}
+          columns={columns}
+          uniqueKey={"uid"}
+          totalCounts={entriesData.length}
+          fetchTableData={() => {}}
+          loadMoreItems={() => {}}
+          itemStatusMap={itemStatusMap}
+        />
+      </div>
+    </div>
+  );
+};
+export default FullPageExtension;
