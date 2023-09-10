@@ -59,9 +59,7 @@ const AppConfigurationExtension = () => {
 
   return (
     <div className="app-config">
-      <div className="app-config-container">
-        {/* add form code here */}
-      </div>
+      <div className="app-config-container">{/* add form code here */}</div>
     </div>
   );
 };

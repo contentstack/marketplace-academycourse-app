@@ -2,27 +2,25 @@ import { useEffect, useState } from "react";
 import Icon from "../../assets/assetsidebar.svg";
 import localeTexts from "../../common/locales/en-us/index";
 import ContentstackAppSDK from "@contentstack/app-sdk";
-import './styles.scss'
+import "./styles.scss";
 
 const AssetSidebarExtension = () => {
-    const [state, setState] = useState<any>({
-        config: {},
-        location: {},
-        appSdkInitialized: false,
+  const [state, setState] = useState<any>({
+    config: {},
+    location: {},
+    appSdkInitialized: false,
+  });
+
+  useEffect(() => {
+    ContentstackAppSDK.init().then(async (appSdk) => {
+      const config = await appSdk?.getConfig();
+      setState({
+        config,
+        location: appSdk?.location,
+        appSdkInitialized: true,
+      });
     });
-
-    useEffect(() => {
-        ContentstackAppSDK.init()
-        .then(async(appSdk) => {
-            const config = await appSdk?.getConfig();
-            setState({
-                config,
-                location: appSdk?.location,
-                appSdkInitialized: true,
-            });
-        })
-    }, [])
-
+  }, []);
 
   return (
     <div className="asset-sidebar">

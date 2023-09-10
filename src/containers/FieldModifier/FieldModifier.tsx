@@ -37,7 +37,7 @@ const FieldModifierExtension = () => {
       });
   }, []);
 
-  const updateEntry = (updatedData:any) => {
+  const updateEntry = (updatedData: any) => {
     const { location } = state;
     location.FieldModifierLocation?.field?.setData(updatedData);
   };
@@ -62,10 +62,7 @@ const FieldModifierExtension = () => {
       return <p>{error}</p>;
     }
 
-    return (
-      <>
-      </>
-    );
+    return <></>;
   };
 
   return (

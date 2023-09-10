@@ -81,10 +81,7 @@ const EntrySidebarExtension = () => {
   };
 
   const renderProduct = () => {
-    return (
-      <>
-      </>
-    );
+    return <></>;
   };
 
   const renderSidebarContent = () => {

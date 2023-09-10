@@ -23,15 +23,10 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom --verbose",
     "eject": "react-scripts eject",
-    "show-report": "npx playwright show-report",
     "lint": "eslint src/**/*.ts src/**/*.tsx",
     "prettify": "prettier --write .",
     "lint:fix": "eslint --fix --ext .js,.jsx,.ts,.tsx . --ignore-pattern './node_modules/' --ignore-pattern './build/' --ignore-pattern '.eslintrc.js'",
-    "precommit": "npm run prettify && npm run lint:fix",
-    "test:chrome": "npx playwright test --config=playwright.config.ts --project=Chromium",
-    "test:firefox": "npx playwright test --config=playwright.config.ts --project=firefox",
-    "test:chrome-headed": "npx playwright test --headed --config=playwright.config.ts --project=Chromium",
-    "test:firefox-headed": "npx playwright test --headed --config=playwright.config.ts --project=firefox"
+    "precommit": "npm run prettify && npm run lint:fix"
   },
   "eslintConfig": {
     "extends": [
