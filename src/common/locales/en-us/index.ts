@@ -50,6 +50,8 @@ const localeTexts = {
   SidebarWidget: {
     title: "Sidebar Widget",
     body: "This is the location that contains your Entry Sidebar Widget. <br />Create your new app now!",
+    productsTitle: "Products",
+    configurationTitle: "Stored Configuration",
     button: {
       learnMore: "Learn more",
     },
