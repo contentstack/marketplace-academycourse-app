@@ -1,9 +1,11 @@
 import "./styles.scss";
 
 import { Button, SkeletonTile } from "@contentstack/venus-components";
+import { Tag, cbModal } from "@contentstack/venus-components";
 import { useEffect, useState } from "react";
 
 import ContentstackAppSdk from "@contentstack/app-sdk";
+import ProductModal from "./ProductModal";
 
 const CustomFieldExtension = () => {
   const appName = "academy";
@@ -58,9 +60,24 @@ const CustomFieldExtension = () => {
       return tempArr;
     });
   };
+  const productModal = (props: any) => (
+    <ProductModal
+      updateSelectedItems={updateSelectedItems}
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...props}
+    />
+  );
 
-  const handleClick = () => { }
-
+  const handleClick = () => {
+    cbModal({
+      component: productModal,
+      modalProps: {
+        onClose: () => {},
+        onOpen: () => {},
+        size: "xsmall",
+      },
+    });
+  };
   const renderCustomField = () => {
     if (loading) {
       return (
@@ -79,12 +96,15 @@ const CustomFieldExtension = () => {
     if (selectedItems?.length) {
       return (
         <div className="extension-content">
-          {
-            //add tag code here
-          }
+          <Tag
+            version="v1"
+            tags={selectedItems}
+            onChange={(tags: any) => setSelectedItems(tags)}
+          />
         </div>
       );
     }
+
     return (
       <div className="no-selected-items" data-test-id="noItem">
         No Products Added
@@ -100,7 +120,7 @@ const CustomFieldExtension = () => {
         <div className="field-extension-wrapper" data-test-id="field-wrapper">
           {renderCustomField()}
           <Button
-            onClick={() => {}}
+            onClick={handleClick}
             className="add-audience-btn"
             buttonType="control"
             disabled={loading}

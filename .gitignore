@@ -1,4 +1,7 @@
 # dependencies
 node_modules/
+build/
 playwright-report
 .env
+public/json-rte.js
+public/json-rte.js.LICENSE.txt

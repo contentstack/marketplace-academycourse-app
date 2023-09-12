@@ -12,7 +12,7 @@ const AssetSidebarExtension = () => {
     location: {},
     appSdkInitialized: false,
   });
-
+  const [assetData, setAssetData] = useState<any>({});
   useEffect(() => {
     ContentstackAppSDK.init().then(async (appSdk) => {
       const config = await appSdk?.getConfig();
@@ -21,6 +21,9 @@ const AssetSidebarExtension = () => {
         location: appSdk?.location,
         appSdkInitialized: true,
       });
+      const assetDataFromLocation =
+        await appSdk?.location?.AssetSidebarWidget?.getData();
+      setAssetData(assetDataFromLocation);
     });
   }, []);
 
@@ -31,7 +34,12 @@ const AssetSidebarExtension = () => {
           <img src={Icon} alt="icon" />
         </div>
         <div className="app-component-content">
-          {/* your code goes here */}
+          <div>Filename : {assetData?.filename}</div>
+          <div>
+            Dimensions : {assetData?.dimension?.height} x{" "}
+            {assetData?.dimension?.width}
+          </div>
+          <div>URL: {assetData?.url}</div>
           <a
             target="_blank"
             rel="noreferrer"

@@ -1,13 +1,14 @@
+import "@contentstack/venus-components/build/main.css";
+
 import React, { Suspense } from "react";
-import { ErrorBoundary } from "../../components/ErrorBoundary";
-import { MarketplaceAppProvider } from "../../common/providers/MarketplaceAppProvider";
 import { Route, Routes } from "react-router-dom";
-import { EntrySidebarExtensionProvider } from "../../common/providers/EntrySidebarExtensionProvider";
+
 import { AppConfigurationExtensionProvider } from "../../common/providers/AppConfigurationExtensionProvider";
 import { CustomFieldExtensionProvider } from "../../common/providers/CustomFieldExtensionProvider";
+import { EntrySidebarExtensionProvider } from "../../common/providers/EntrySidebarExtensionProvider";
+import { ErrorBoundary } from "../../components/ErrorBoundary";
 import FieldModifierExtension from "../FieldModifier/FieldModifier";
-
-import "@contentstack/venus-components/build/main.css";
+import { MarketplaceAppProvider } from "../../common/providers/MarketplaceAppProvider";
 
 /**
  * All the routes are Lazy loaded.
@@ -36,7 +37,7 @@ const DefaultPage = React.lazy(() => import("../index"));
 function App() {
   return (
     <ErrorBoundary>
-      <MarketplaceAppProvider>
+      <MarketplaceAppProvider excludeRoutes={["/"]}>
         <Routes>
           <Route path="/" element={<DefaultPage />} />
           <Route

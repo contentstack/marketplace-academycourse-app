@@ -1,10 +1,10 @@
+import ContentstackSDK from "@contentstack/app-sdk";
 /** @jsx jsx */
 import { jsx } from "@emotion/core";
-import ContentstackSDK from "@contentstack/app-sdk";
 
-export default ContentstackSDK.init().then(async (sdk:any) => {
-    const extensionObj = await sdk["location"];
-    const RTE = await extensionObj["RTEPlugin"]!;
+export default ContentstackSDK.init().then(async (sdk: any) => {
+  const extensionObj = await sdk["location"];
+  const RTE = await extensionObj["RTEPlugin"]!;
 
-    return {};
+  return {};
 });
