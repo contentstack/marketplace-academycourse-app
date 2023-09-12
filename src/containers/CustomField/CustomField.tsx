@@ -59,6 +59,8 @@ const CustomFieldExtension = () => {
     });
   };
 
+  const handleClick = () => { }
+
   const renderCustomField = () => {
     if (loading) {
       return (
