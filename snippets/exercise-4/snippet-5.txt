@@ -1,0 +1,18 @@
+const columns = [
+  {
+    Header: "Title",
+    accessor: "title",
+    columnWidthMultiplier: 1.9,
+  },
+  {
+    Header: "UID",
+    accessor: "uid",
+    id: "uid",
+    columnWidthMultiplier: 1.4,
+  },
+  {
+    Header: "Count",
+    accessor: "count",
+    columnWidthMultiplier: 0.7,
+  },
+];

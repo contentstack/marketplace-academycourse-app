@@ -1,0 +1,5 @@
+<div>Filename : {assetData?.filename}</div>
+<div>
+    Dimensions : {assetData?.dimension?.height} x {assetData?.dimension?.width}
+</div>
+<div>URL: {assetData?.url}</div>

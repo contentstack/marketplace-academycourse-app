@@ -1,0 +1,15 @@
+const [entriesData, setEntriesData] = useState<any[]>([]);
+ 
+const getEntriesOfAContentType = async (contentTypeUid: any) => {
+  const { entries } =
+    (await state?.location?.FullPage?.stack
+      ?.ContentType(contentTypeUid)
+      .Entry.Query()
+      .find()) || {};
+  setEntriesData(entries);
+};
+ 
+useEffect(() => {
+  if (!Object.keys(selectedContentType).length) return;
+  getEntriesOfAContentType(selectedContentType?.value);
+}, [selectedContentType]);
