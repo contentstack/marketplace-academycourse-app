@@ -1,0 +1,25 @@
+const columns = [
+  {
+    Header: "Title",
+    accessor: "title",
+    columnWidthMultiplier: 1.9,
+  },
+  {
+    Header: "UID",
+    accessor: "uid",
+    id: "uid",
+    columnWidthMultiplier: 1.5,
+  },
+  {
+    Header: "Locale",
+    accessor: "locale",
+    columnWidthMultiplier: 1,
+  },
+  {
+    Header: "Updated At",
+    accessor: (obj: any) => {
+      return new Date(obj?.updated_at).toUTCString();
+    },
+    columnWidthMultiplier: 2,
+  },
+];

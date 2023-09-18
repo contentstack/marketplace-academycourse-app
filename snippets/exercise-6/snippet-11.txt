@@ -1,0 +1,6 @@
+let itemStatusMap: any = {};
+useEffect(() => {
+  entriesData?.forEach(
+    (_: any, index: any) => (itemStatusMap[index] = "loaded")
+  );
+}, [entriesData]);

@@ -63,7 +63,7 @@ const FieldModifierExtension = () => {
       return <p>{error}</p>;
     }
 
-    return <></>;
+    return <>{/* your code goes here */}</>;
   };
 
   return (

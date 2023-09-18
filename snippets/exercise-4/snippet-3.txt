@@ -1,0 +1,15 @@
+let entriesCountObj = await Promise.all(
+  content_types?.map(async (content_type: any) => {
+    const { entries } =
+      (await appSdk?.location?.DashboardWidget?.stack
+        ?.ContentType(content_type.uid)
+        ?.Entry.Query()
+        .find()) || {};
+    return {
+      uid: content_type?.uid,
+      title: content_type?.title,
+      count: entries?.length,
+    };
+  })
+);
+setEntriesCounts(entriesCountObj);

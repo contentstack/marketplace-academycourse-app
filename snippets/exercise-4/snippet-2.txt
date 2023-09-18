@@ -1,0 +1,2 @@
+const { content_types } =
+  (await appSdk?.location?.DashboardWidget?.stack?.getContentTypes()) || {};

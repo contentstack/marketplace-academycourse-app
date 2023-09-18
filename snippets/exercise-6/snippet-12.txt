@@ -1,0 +1,9 @@
+<InfiniteScrollTable
+  data={entriesData}
+  columns={columns}
+  uniqueKey={"uid"}
+  totalCounts={entriesData.length}
+  fetchTableData={() => {}}
+  loadMoreItems={() => {}}
+  itemStatusMap={itemStatusMap}
+/>;

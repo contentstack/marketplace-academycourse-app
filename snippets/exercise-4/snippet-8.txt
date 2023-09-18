@@ -1,0 +1,18 @@
+<div className="dashboard">
+  <div className="dashboard-container">
+    {state?.appSdkInitialized && (
+      <>
+        <h2>Entries Count</h2>
+        <InfiniteScrollTable
+          data={entriesCounts}
+          columns={columns}
+          uniqueKey={"uid"}
+          totalCounts={entriesCounts.length}
+          fetchTableData={() => {}}
+          loadMoreItems={() => {}}
+          itemStatusMap={itemStatusMap}
+        />
+      </>
+    )}
+  </div>
+</div>

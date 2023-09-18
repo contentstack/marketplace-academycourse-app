@@ -1,0 +1,7 @@
+<Select
+  options={contentTypeOptions}
+  value={selectedContentType}
+  onChange={handleDropdownChange}
+  placeholder="Select Content Type"
+  selectLabel="Content Type"
+/>

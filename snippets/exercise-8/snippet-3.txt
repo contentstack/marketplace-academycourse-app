@@ -1,0 +1,21 @@
+if (!RTE) return;
+ 
+const Academy = RTE("academy", () => {
+  return {
+    title: "Capitalize",
+    icon: <Icon icon="Settings" />,
+  };
+});
+ 
+//@ts-ignore
+Academy.on("exec", async (rte: RTE) => {
+  try {
+    onClickHandler(rte);
+  } catch (e) {
+    console.error("Error", e);
+  }
+});
+ 
+return {
+  Academy,
+};

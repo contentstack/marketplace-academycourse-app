@@ -1,0 +1,11 @@
+useEffect(() => {
+  if (!state.appSdkInitialized) return;
+  let dropdownOptions: any = [];
+  contentTypes?.forEach((contentType: any) => {
+    dropdownOptions.push({
+      label: contentType?.title,
+      value: contentType?.uid,
+    });
+  });
+  setContentTypeOptions(dropdownOptions);
+}, [contentTypes]);
