@@ -1,5 +1,6 @@
 fileignoreconfig:
-- filename: .github/workflows/secrets-scan.yml
-  ignore_detectors:
-    - filecontent
+- filename: rte/yarn.lock
+  checksum: c9306bffffd56dedd39c5be5bf1f62d9af118461a924eb3e902820a78ee5a46c
+- filename: rte/package-lock.json
+  checksum: cebbc1d005c0c08cf604ec6697a67600220df687a652f029bb12b397d41969b5
 version: "1.0"
