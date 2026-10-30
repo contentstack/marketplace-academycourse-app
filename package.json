@@ -38,8 +38,10 @@
     "lint": "eslint src/**/*.ts src/**/*.tsx",
     "prettify": "prettier --write .",
     "lint:fix": "eslint --fix --ext .js,.jsx,.ts,.tsx . --ignore-pattern './node_modules/' --ignore-pattern './build/' --ignore-pattern '.eslintrc.js'",
-    "precommit": "npm run prettify && npm run lint:fix"
+    "precommit": "npm run prettify && npm run lint:fix",
+    "test:coverage": "react-scripts test --env=jsdom --watchAll=false --coverage"
   },
+  "//": "jest.coverageThreshold is the measured floor; ratchet target 90 - MKT-19847",
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -80,6 +82,19 @@
   "jest": {
     "transform": {
       "^(?!.*\\.(js|jsx|mjs|cjs|ts|tsx|css|json)$)": "<rootDir>/jest/transform.js"
+    },
+    "collectCoverageFrom": [
+      "src/**/*.{ts,tsx}",
+      "!src/**/*.d.ts",
+      "!src/__tests__/**",
+      "!src/setupTests.ts",
+      "!src/common/types/**"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "lines": 77,
+        "branches": 71
+      }
     }
   }
 }
