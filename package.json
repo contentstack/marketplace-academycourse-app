@@ -92,8 +92,8 @@
     ],
     "coverageThreshold": {
       "global": {
-        "lines": 77,
-        "branches": 71
+        "lines": 88,
+        "branches": 78
       }
     }
   }
