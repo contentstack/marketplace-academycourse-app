@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor, within } from "@testing-library/react";
 
 import App from "../containers/App/App";
 import { ErrorBoundary } from "../components/ErrorBoundary";
@@ -35,7 +35,7 @@ const LOCATIONS: Record<
     value: { stack: { getContentTypes: async () => ({ content_types: [] }) } },
     marker: () =>
       waitFor(() =>
-        expect(document.querySelector(".dashboard-container")).not.toBeNull()
+        expect(document.body).toContainHTML('<div class="dashboard-container">')
       ),
   },
   "/asset-sidebar": {
@@ -54,7 +54,7 @@ const LOCATIONS: Record<
     value: { stack: { getContentTypes: async () => ({ content_types: [] }) } },
     marker: () =>
       waitFor(() =>
-        expect(document.querySelector(".full-page-container")).not.toBeNull()
+        expect(document.body).toContainHTML('<div class="full-page-container">')
       ),
   },
   "/field-modifier": {
@@ -62,9 +62,9 @@ const LOCATIONS: Record<
     value: { field: { getData: () => "x", setData: jest.fn() } },
     marker: () =>
       waitFor(() =>
-        expect(
-          document.querySelector(".field-modifier-container")
-        ).not.toBeNull()
+        expect(document.body).toContainHTML(
+          '<div class="field-modifier-container">'
+        )
       ),
   },
   "/app-configuration": {
@@ -77,7 +77,9 @@ const LOCATIONS: Record<
     },
     marker: () =>
       waitFor(() =>
-        expect(document.querySelector(".app-config-container")).not.toBeNull()
+        expect(document.body).toContainHTML(
+          '<div class="app-config-container">'
+        )
       ),
   },
 };
@@ -121,9 +123,9 @@ describe("the other paths", () => {
   test("/ lists the seven locations as links and does not start the SDK", async () => {
     open("/");
     expect(await screen.findByText(/Nothing to show here/)).toBeInTheDocument();
-    const links = Array.from(document.querySelectorAll(".ui-location a")).map(
-      (a) => a.getAttribute("href")
-    );
+    const links = within(screen.getByRole("list"))
+      .getAllByRole("link")
+      .map((a) => a.getAttribute("href"));
     expect(links.sort()).toEqual(Object.keys(LOCATIONS).sort());
     expect(init).not.toHaveBeenCalled();
   });
@@ -142,7 +144,11 @@ describe("the other paths", () => {
         "Something went wrong. Please try refreshing the page."
       )
     ).toBeInTheDocument();
-    expect(document.querySelector(".asset-sidebar")).toBeNull();
+    expect(
+      screen.queryByRole("link", {
+        name: localeTexts.AssetSidebarWidget.button.learnMore,
+      })
+    ).toBeNull();
   });
 
   test("while the SDK starts, a location shows Loading...", () => {
