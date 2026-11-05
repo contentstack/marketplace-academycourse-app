@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  app:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+          cache-dependency-path: package-lock.json
+      - run: npm ci
+      - run: npx tsc --noEmit
+      - run: npm run test:coverage
+      # CI=false as in the course setup: the exercise stubs have unused variables on purpose,
+      # which Create React App turns into errors when CI=true.
+      - run: npm run build
+        env:
+          CI: false
+
+  rte:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: rte
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+          cache-dependency-path: rte/package-lock.json
+      - run: npm ci
+      - run: npm run build
+      - run: npm run build-academy
